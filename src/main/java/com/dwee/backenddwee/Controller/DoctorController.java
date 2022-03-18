@@ -35,10 +35,17 @@ public class DoctorController {
     public ResponseEntity<Doctor>getDoctorById(@PathVariable String id){
         return ResponseEntity.ok(doctorSer.getDoctorById(id));
     }
-    @DeleteMapping("/{id}")
+
+    @DeleteMapping("delete/{id}")
     public ResponseEntity deleteDoctor(@PathVariable  String id){
         doctorSer.deleteDoctor(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @DeleteMapping("/delete")
+    public String deleteAll(){
+        doctorSer.deleteAll();
+        return "All doctors are deleted";
     }
 
 }
