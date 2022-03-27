@@ -1,6 +1,6 @@
 package com.dwee.backenddwee.Service;
 
-import com.dwee.backenddwee.Entity.Doctor;
+import com.dwee.backenddwee.Models.Doctor;
 import com.dwee.backenddwee.Repository.DoctorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
