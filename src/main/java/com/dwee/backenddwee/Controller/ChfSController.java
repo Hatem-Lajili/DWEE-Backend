@@ -2,7 +2,6 @@ package com.dwee.backenddwee.Controller;
 
 
 import com.dwee.backenddwee.Models.ChfS;
-import com.dwee.backenddwee.Repository.ChfSRepo;
 import com.dwee.backenddwee.Service.ChfSSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,14 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api")
 public class ChfSController {
 
 
     @Autowired
     private ChfSSer chfSSer;
-    @Autowired
-    private ChfSRepo chfSRepo;
+
 
     @PostMapping("/addChief")
     public ResponseEntity createChiefs (@RequestBody ChfS chfS){
@@ -36,13 +34,23 @@ public class ChfSController {
     public ResponseEntity<ChfS>getChiefsById(@PathVariable String id){
         return ResponseEntity.ok(chfSSer.getChfSById(id));
     }
-
-    @PutMapping("updateChief/{id}")
-    public ChfS updateChfS(@RequestBody ChfS chfS,@PathVariable String id){
-        chfS.setId(id);
-        chfSRepo.save(chfS);
-        return chfS;
+    @PutMapping("/adddoctors/{id}")
+    public ResponseEntity addDoctor(@RequestBody ChfS chfS, @PathVariable String id){
+         chfSSer.addDoctor(chfS,id);
+         return ResponseEntity.ok().build();
     }
+    //ajoutList
+    @PutMapping("/addListDoctor/{id}")
+    public ResponseEntity addListDoctor(@RequestBody ChfS chfS,@PathVariable String id){
+        chfSSer.addListDoctors(chfS,id);
+        return ResponseEntity.ok().build();
+        }
+
+    @PutMapping("/updateChief/{id}")
+    public ChfS chiefToUpdate(@RequestBody ChfS chfS, @PathVariable String id) {
+        return chfSSer.updateChfs(chfS,id);
+    }
+
 
     @DeleteMapping("deleteChief/{id}")
     public ResponseEntity deleteChiefById(@PathVariable  String id){

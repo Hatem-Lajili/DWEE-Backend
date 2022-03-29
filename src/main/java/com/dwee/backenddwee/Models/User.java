@@ -1,29 +1,30 @@
 package com.dwee.backenddwee.Models;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "Hospital")
-public class Hospital {
+@Document(collection = "users")
+public class User {
     @Id
     private String id;
 
-    @Field("name_hospital")
-    private String name_hospital;
+    @Field("username")
+    private String username;
 
-    @Field("adress")
-    private String address;
+    @Field("email")
+    private String email;
 
-    @DBRef
-    private List<Department> departments;
+    @Field("password")
+    private String password;
+
+
 }

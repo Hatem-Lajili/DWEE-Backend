@@ -1,32 +1,30 @@
 package com.dwee.backenddwee.Models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 
 @Data
+@Getter
+@Setter
 
 @Document(collection = "ChfS")
-public class ChfS {
-    @Id
-    private String id;
-    private String name;
+public class ChfS extends User {
 
-    @DBRef
-    private Set<Doctor> doctors  ;
+    public ChfS() {
 
-    public ChfS(String id, String name, Set<Doctor> doctors) {
-        this.id = id;
-        this.name = name;
+    }
+    public ChfS(List<Doctor> doctors) {
         this.doctors = doctors;
     }
-    public ChfS() {
-        this.doctors = new HashSet<>();
 
-    }
+    @DBRef
+    private List<Doctor> doctors  ;
+
+
 }

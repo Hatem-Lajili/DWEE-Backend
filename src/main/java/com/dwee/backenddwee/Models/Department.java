@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "Departement")
+@Document(collection = "Department")
 public class Department {
     @Id
     private String id;
@@ -21,7 +21,5 @@ public class Department {
     @Field("num_dep")
     private int num_dep;
 
-    @Field("adress")
-    private String address;
 
 }
