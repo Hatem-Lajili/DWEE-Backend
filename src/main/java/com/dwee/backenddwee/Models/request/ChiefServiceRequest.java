@@ -1,10 +1,8 @@
-package com.dwee.backenddwee.Models;
+package com.dwee.backenddwee.Models.request;
 
-import lombok.AllArgsConstructor;
+import com.dwee.backenddwee.Models.Gender;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,15 +11,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
-
+import java.util.List;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Document(collection = "doctors")
-public class Doctor {
-    @Id
-    private String id;
+public class ChiefServiceRequest {
+
 
     @NotBlank
     @Size(max = 30)
@@ -42,13 +36,16 @@ public class Doctor {
     @NotBlank
     @Digits(fraction = 0, integer = 10)
     @Field("phonenumber")
-    private String phonenumber;
+    private String phoneNumber;
 
     @NotBlank
+    @Field("gender")
     private Gender gender;
 
     @NotBlank
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date birthDate;
 
+    @DBRef
+    private List<String> idDoctors;
 }

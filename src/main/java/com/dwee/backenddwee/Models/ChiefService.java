@@ -8,17 +8,37 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Date;
+import java.util.List;
+
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "users")
-public class User {
+@Document(collection = "chiefservices")
+public class ChiefService {
+
     @Id
     private String id;
+
+    @NotBlank
+    @Size(max = 30)
+    @Field("firstname")
+    private String firstname;
+
+    @NotBlank
+    @Size(max = 30)
+    @Field("lastname")
+    private String lastname;
+
+    @DBRef
+    private List<Doctor> doctors;
 
     @NotBlank
     @Email
@@ -27,22 +47,16 @@ public class User {
     private String email;
 
     @NotBlank
-    @Size(max = 120)
-    @Field("password")
-    private String password;
+    @Digits(fraction = 0, integer = 10)
+    @Field("phonenumber")
+    private String phoneNumber;
 
     @NotBlank
-    @Field
-    private  boolean isVerified;
+    @Field("gender")
+    private Gender gender;
 
-    @DBRef
-    private Role role;
-
-
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
+    @NotBlank
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Date birthDate;
 
 }

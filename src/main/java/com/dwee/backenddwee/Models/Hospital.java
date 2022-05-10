@@ -13,16 +13,15 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "Hospital")
 public class Hospital {
     @Id
     private String id;
 
-    @Field("name_hospital")
+    @Field("namehospital")
     private String name_hospital;
 
-    @Field("adress")
-    private String address;
+    @Field("address")
+    private Address address;
 
     @DBRef
     private List<Department> departments;

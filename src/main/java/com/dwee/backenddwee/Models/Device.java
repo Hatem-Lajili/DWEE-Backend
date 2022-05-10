@@ -7,13 +7,17 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "Machine")
-public class Machine {
+@Document(collection = "devices")
+public class Device {
     @Id
     private String id;
+
+    private String idDevice;
 
     @Field(name = "flow")
     private double flow;
@@ -26,4 +30,17 @@ public class Machine {
 
     @Field(name = "spo2")
     private double spo2;
+
+    @Field(name = "connected")
+    private boolean isConnected;
+
+    @Field(name = "lastrefreshed")
+    private Date lastRefreshed;
+
+    @Field(name = "workingproperly")
+    private boolean isWorkingProperly;
+
+    @Field(name = "errormessage")
+    private String errorMessage;
+
 }
